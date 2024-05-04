@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bl2gv6p54fjb7"]
+
+[ext_resource type="Texture2D" uid="uid://b612pnq7ynkbo" path="res://assets/sprites/slime_purple.png" id="1_1vo6x"]
+[ext_resource type="Script" path="res://scripts/purple_slime.gd" id="1_h7oak"]
+[ext_resource type="PackedScene" uid="uid://em52stilg7fq" path="res://scenes/killzone.tscn" id="2_g6u03"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c02ll"]
+atlas = ExtResource("1_1vo6x")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pbtf"]
+atlas = ExtResource("1_1vo6x")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgi6j"]
+atlas = ExtResource("1_1vo6x")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp2t5"]
+atlas = ExtResource("1_1vo6x")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3kqbr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c02ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pbtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgi6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp2t5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmrji"]
+size = Vector2(12, 12)
+
+[node name="PurpleSlime" type="Node2D"]
+script = ExtResource("1_h7oak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3kqbr")
+autoplay = "default"
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(-10, 0)
+
+[node name="Killzone" parent="." instance=ExtResource("2_g6u03")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_nmrji")
