@@ -1,0 +1,168 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdgnqhue10bb1"]
+
+[ext_resource type="Texture2D" uid="uid://ccpoqjmiagrw1" path="res://assets/images/icon.jpeg" id="1_u1c6r"]
+[ext_resource type="Texture2D" uid="uid://dcdqb0o4wxedg" path="res://assets/images/coinIcon.jpeg" id="2_t5ik7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwr43"]
+bg_color = Color(0.489834, 0.654025, 1, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.315477, 0.561096, 0.998836, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.20871, 0.20871, 0.20871, 0.6)
+shadow_size = 15
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1h"]
+bg_color = Color(0.145902, 0.643013, 0.898405, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInfoBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 23.0
+offset_right = -769.0
+offset_bottom = -421.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwr43")
+
+[node name="AvatarFrame" type="Panel" parent="PlayerInfoBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.595
+offset_top = -79.0
+offset_right = 181.595
+offset_bottom = 79.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1h")
+
+[node name="Avatar" type="TextureRect" parent="PlayerInfoBox/AvatarFrame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -58.5
+offset_right = 58.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u1c6r")
+expand_mode = 1
+
+[node name="LevelLabel" type="Label" parent="PlayerInfoBox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -157.305
+offset_top = -78.5
+offset_right = -14.3052
+offset_bottom = 78.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 770.0
+offset_top = 23.0
+offset_right = -25.0002
+offset_bottom = -421.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwr43")
+
+[node name="AvatarFrame" type="Panel" parent="CoinBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.595
+offset_top = -79.0
+offset_right = 181.595
+offset_bottom = 79.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1h")
+
+[node name="Avatar" type="TextureRect" parent="CoinBox/AvatarFrame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -58.5
+offset_right = 58.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t5ik7")
+expand_mode = 1
+
+[node name="CoinLabel" type="Label" parent="CoinBox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -157.305
+offset_top = -78.5
+offset_right = -14.3052
+offset_bottom = 78.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "12310"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -246.0
+offset_right = 205.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play"
