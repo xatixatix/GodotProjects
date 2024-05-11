@@ -1,0 +1,2 @@
+This project was created while i was watching GDQuest's video about a vampire survivors like game tutorial for Godot. Of course I added my own changes to it.
+Video link if you want to check it out: https://www.youtube.com/watch?v=GwCiGixlqiU
