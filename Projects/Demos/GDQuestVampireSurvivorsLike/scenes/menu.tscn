@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsjo5ot2o6jeb"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_wbqtk"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wbqtk")
+
+[node name="StartMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="StartMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.201527, 0.201527, 0.201527, 1)
+
+[node name="PlayButton" type="Button" parent="StartMenu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -592.0
+offset_right = 141.0
+offset_bottom = -470.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 81
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="StartMenu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -284.0
+offset_right = 141.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 81
+text = "Quit"
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="ready" from="StartMenu" to="." method="_on_start_menu_ready"]
+[connection signal="pressed" from="StartMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="StartMenu/QuitButton" to="." method="_on_quit_button_pressed"]
