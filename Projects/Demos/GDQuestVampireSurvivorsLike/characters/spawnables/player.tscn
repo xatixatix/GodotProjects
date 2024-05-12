@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://tsoj4nv7cvvd"]
+[gd_scene load_steps=8 format=3 uid="uid://tsoj4nv7cvvd"]
 
 [ext_resource type="Script" path="res://characters/spawnables/player.gd" id="1_h4spx"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="2_s02o6"]
@@ -7,6 +7,24 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k2cn7"]
 radius = 25.0
 height = 76.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eqatl"]
+radius = 31.0
+height = 86.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0irsp"]
+bg_color = Color(0, 0, 0, 0.298039)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0c1h"]
+bg_color = Color(1.01075e-06, 0.582047, 0.224297, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody2D"]
 platform_floor_layers = 0
@@ -23,3 +41,30 @@ shape = SubResource("CapsuleShape2D_k2cn7")
 
 [node name="Gun" parent="." instance=ExtResource("3_sjbkt")]
 position = Vector2(0, -30)
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -19)
+shape = SubResource("CapsuleShape2D_eqatl")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -130.0
+offset_right = 50.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0irsp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b0c1h")
+value = 69.71
+show_percentage = false

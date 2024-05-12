@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvu3sr4pgc62n"]
+[gd_scene load_steps=5 format=3 uid="uid://cvu3sr4pgc62n"]
 
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_dvugh"]
 [ext_resource type="PackedScene" uid="uid://tsoj4nv7cvvd" path="res://characters/spawnables/player.tscn" id="1_tscle"]
 [ext_resource type="PackedScene" uid="uid://6coev2iu0jwi" path="res://trees/pine_tree.tscn" id="1_ybevq"]
-[ext_resource type="PackedScene" uid="uid://dce2n31vprv2q" path="res://characters/spawnables/slime.tscn" id="2_5m5mp"]
+
+[sub_resource type="Curve2D" id="Curve2D_qgimt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -194, -177, 0, 0, 0, 0, 2231, -250, 0, 0, 0, 0, 2190, 1363, 0, 0, 0, 0, -207, 1353, 0, 0, 0, 0, -194, -174, 0, 0, 0, 0, -194, -177)
+}
+point_count = 6
 
 [node name="Game" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+script = ExtResource("1_dvugh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -51,24 +58,50 @@ position = Vector2(723, 833)
 [node name="PineTree10" parent="." instance=ExtResource("1_ybevq")]
 position = Vector2(771, 517)
 
-[node name="Slime4" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(133, 583)
-
-[node name="Slime5" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(1751, 512)
-
-[node name="Slime6" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(1288, 230)
-
-[node name="Slime" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(479, 857)
-
-[node name="Slime2" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(543, 284)
-
-[node name="Slime3" parent="." instance=ExtResource("2_5m5mp")]
-position = Vector2(1409, 931)
-
 [node name="Player" parent="." instance=ExtResource("1_tscle")]
-unique_name_in_owner = true
 position = Vector2(994, 639)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-994, -639)
+curve = SubResource("Curve2D_qgimt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-194, -177)
+rotation = -0.030094
+
+[node name="GameOver" type="CanvasLayer" parent="Player"]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Player/GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.639216)
+
+[node name="Label" type="Label" parent="Player/GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -67.5
+offset_right = 269.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 81
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlimeSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SlimeSpawnTimer" to="." method="_on_slime_spawn_timer_timeout"]
