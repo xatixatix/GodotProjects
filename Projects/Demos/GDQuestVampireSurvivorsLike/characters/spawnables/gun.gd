@@ -1,6 +1,6 @@
 extends Area2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var enemiesInRange = get_overlapping_bodies()
 	if enemiesInRange.size() > 0:
 		var targetEnemy = enemiesInRange.front()
