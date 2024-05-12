@@ -1,0 +1,158 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvu3sr4pgc62n"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_dvugh"]
+[ext_resource type="PackedScene" uid="uid://tsoj4nv7cvvd" path="res://characters/spawnables/player.tscn" id="1_tscle"]
+[ext_resource type="PackedScene" uid="uid://6coev2iu0jwi" path="res://trees/pine_tree.tscn" id="1_ybevq"]
+[ext_resource type="PackedScene" uid="uid://bsjo5ot2o6jeb" path="res://scenes/menu.tscn" id="4_l7uto"]
+
+[sub_resource type="Curve2D" id="Curve2D_qgimt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -194, -177, 0, 0, 0, 0, 2231, -250, 0, 0, 0, 0, 2190, 1363, 0, 0, 0, 0, -207, 1353, 0, 0, 0, 0, -194, -174, 0, 0, 0, 0, -194, -177)
+}
+point_count = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw2yj"]
+bg_color = Color(0.31371, 0.308585, 0.316205, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Game" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_dvugh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -122.0
+offset_top = -146.0
+offset_right = 2081.0
+offset_bottom = 1281.0
+
+[node name="PineTree7" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(327, 867)
+
+[node name="PineTree2" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(762, 787)
+
+[node name="PineTree3" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(300, 366)
+
+[node name="PineTree4" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(1400, 617)
+
+[node name="PineTree5" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(722, 762)
+
+[node name="PineTree6" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(1141, 577)
+
+[node name="PineTree8" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(1645, 896)
+
+[node name="PineTree9" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(1580, 245)
+
+[node name="PineTree11" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(841, 211)
+
+[node name="PineTree" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(723, 833)
+
+[node name="PineTree10" parent="." instance=ExtResource("1_ybevq")]
+position = Vector2(771, 517)
+
+[node name="Player" parent="." instance=ExtResource("1_tscle")]
+unique_name_in_owner = true
+position = Vector2(994, 639)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-994, -639)
+curve = SubResource("Curve2D_qgimt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-194, -177)
+rotation = -0.030094
+
+[node name="GameOver" type="CanvasLayer" parent="Player"]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Player/GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.639216)
+
+[node name="Label" type="Label" parent="Player/GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -67.5
+offset_right = 269.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 81
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="Player/GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = 65.0
+offset_right = 152.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_xw2yj")
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="Player/GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = 177.0
+offset_right = 152.0
+offset_bottom = 271.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_xw2yj")
+text = "MENU"
+
+[node name="SlimeSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Menu" parent="." instance=ExtResource("4_l7uto")]
+unique_name_in_owner = true
+process_mode = 3
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="pressed" from="Player/GameOver/ColorRect/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Player/GameOver/ColorRect/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="timeout" from="SlimeSpawnTimer" to="." method="_on_slime_spawn_timer_timeout"]
+[connection signal="start_game" from="Menu" to="." method="_on_menu_start_game"]
