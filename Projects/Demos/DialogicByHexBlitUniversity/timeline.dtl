@@ -1,0 +1,12 @@
+character (narrator): Hi!
+label start
+character (narrator): What are you up to here?
+[text_input var="response"]
+character (narrator): Hmm...
+character (narrator): Let's see...
+character (narrator): WHY ARE YOU SAING "{response}"
+- Why not?
+	character (narrator): agh.. never mind...
+- I hate you!
+	character (narrator): I hate you too \:)
+jump timeline/start
