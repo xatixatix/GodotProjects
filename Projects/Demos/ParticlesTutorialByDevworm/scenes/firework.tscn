@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxomifm4g8cbe"]
+
+[ext_resource type="Script" path="res://scenes/firework.gd" id="1_6c075"]
+
+[sub_resource type="Curve" id="Curve_a8cjp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_f4wkj"]
+min_value = -1024.0
+max_value = 1024.0
+_data = [Vector2(0.00409836, -0.186813), 0.0, 0.0, 0, 0, Vector2(1, 0.582418), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Firework" type="Node2D"]
+script = ExtResource("1_6c075")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_a8cjp")
+color = Color(0.522, 0.27, 0.9, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_f4wkj")
