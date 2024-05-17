@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmyxofo1gpjar"]
+
+[ext_resource type="PackedScene" uid="uid://np0yfcag0wmx" path="res://scenes/fire_3d.tscn" id="1_m014a"]
+
+[node name="3Dparticles" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.835836, 0.548979, 0, -0.548979, 0.835836, 0, 35.0369, 30.18)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 221.419, 75, 179.437)
+light_energy = 0.5
+
+[node name="Fire3D" parent="." instance=ExtResource("1_m014a")]
