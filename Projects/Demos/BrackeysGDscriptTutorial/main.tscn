@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://oytxmaoyafjn"]
+
+[ext_resource type="Script" path="res://basic.gd" id="1_hkhbm"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = 250.0
+offset_right = 850.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Basics" type="Node" parent="."]
+script = ExtResource("1_hkhbm")
+
+[connection signal="timeout" from="Timer" to="Basics" method="_on_timer_timeout"]
