@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="DialogicByHexBlitUniversity"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,14 +21,18 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"character": "res://narrator.dch"
+}
 directories/dtl_directory={
 "timeline": "res://timeline.dtl"
 }
 glossary/default_case_sensitive=true
-layout/style_list=[]
-layout/default_style="Default"
-variables={}
+layout/style_list=["res://mystyle.tres"]
+layout/default_style="res://mystyle.tres"
+variables={
+"response": ""
+}
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
