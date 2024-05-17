@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciw35blla8nrm"]
+
+[sub_resource type="Curve" id="Curve_7v7xh"]
+_data = [Vector2(0, 0.88355), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.28013), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_6podg"]
+offsets = PackedFloat32Array(0, 0.115741, 0.648148, 0.856481, 1)
+colors = PackedColorArray(1, 0.121569, 0, 1, 1, 0.270588, 0, 1, 0.866667, 0.811765, 0.341176, 1, 0.929412, 0.831373, 0.65098, 0, 0.423651, 0.423651, 0.423651, 0.352941)
+
+[node name="Fire" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 1500
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 12.62
+gravity = Vector2(0, -600)
+radial_accel_min = -83.34
+radial_accel_max = -66.67
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_7v7xh")
+color_ramp = SubResource("Gradient_6podg")
