@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://oytxmaoyafjn"]
+
+[ext_resource type="Script" path="res://basic.gd" id="1_hkhbm"]
+[ext_resource type="Script" path="res://character.gd" id="2_wmmi3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = 250.0
+offset_right = 850.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Basics" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_hkhbm")
+sprite = NodePath("../Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 454.0
+offset_top = 419.0
+offset_right = 759.0
+offset_bottom = 526.0
+theme_override_font_sizes/font_size = 61
+text = "Press me!"
+
+[node name="Character" type="Node" parent="."]
+script = ExtResource("2_wmmi3")
+profession = "Potion Seller"
+health = 100
+
+[node name="Character2" type="Node" parent="."]
+script = ExtResource("2_wmmi3")
+profession = "Knight"
+health = 150
+
+[node name="Character3" type="Node" parent="."]
+script = ExtResource("2_wmmi3")
+profession = "Guy"
+health = 40
+
+[connection signal="timeout" from="Timer" to="Basics" method="_on_timer_timeout"]
+[connection signal="ready_signal" from="Basics" to="Basics" method="_on_ready_signal"]
+[connection signal="pressed" from="Button" to="Basics" method="_on_button_pressed"]
