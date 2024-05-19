@@ -6,16 +6,14 @@ var movement_speed = 50.0
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	call_deferred("seeker_setup")
-	pass # Replace with function body.
 
 func seeker_setup():
 	await get_tree().physics_frame
 	if target:
 		navigation_agent_2d.target_position = target.global_position
-		
+
 func acquire_target():
 	var food_container = get_tree().get_nodes_in_group("food")[0]
 	var available_food = food_container.get_children()
@@ -24,7 +22,6 @@ func acquire_target():
 		var new_target = available_food[0]
 		target = new_target
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if is_instance_valid(target):
 		navigation_agent_2d.target_position = target.global_position
@@ -44,9 +41,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	animated_sprite_2d.flip_h = false if velocity.x > 0 else true
-	pass
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
-	pass # Replace with function body.
