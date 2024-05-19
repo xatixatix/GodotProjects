@@ -1,12 +1,15 @@
 extends Node
 
 @onready var label = $"../Label"
-
-var health: int = 100
-
-enum Alignment { ALLY, NEUTRAL, ENEMY }
+@onready var character_2 = $"../Character2"
 
 @export var unit_aligment = Alignment.ALLY
+@export var sprite: Sprite2D
+
+signal ready_signal
+var health: int = 100
+var chest := Equipment.new(10, 5)
+enum Alignment { ALLY, NEUTRAL, ENEMY }
 
 func _ready():
 	# This is a comment
@@ -73,6 +76,14 @@ func _ready():
 			print("HOHO")
 		_:
 			print("WHO ARE YOU?!")
+	
+	# Signals
+	ready_signal.emit("READY")
+	
+	# Classes
+	character_2.die()
+	print(str(chest.get_armor()))
+	print(str(chest.get_weight()))
 
 # Just a function
 func shoot():
@@ -105,3 +116,23 @@ func _input(event):
 		else:
 			health -= 10
 			print("Health is: " + str(health)) 
+
+func _on_button_pressed():
+	print("Button was pressed!")
+
+func _on_ready_signal(msg):
+	print(msg)
+
+class Equipment:
+	var armor: int
+	var weight: int
+	
+	func _init(armorIn, weightIn):
+		armor = armorIn
+		weight = weightIn
+	
+	func get_armor():
+		return armor
+		
+	func get_weight():
+		return weight
